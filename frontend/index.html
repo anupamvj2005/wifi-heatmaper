@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi Signal Heatmapper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Wi-Fi Signal Heatmapper</h1>
+        <p>IoT-enabled coverage analysis using ESP32 & Laptop Wi-Fi.</p>
+    </header>
+
+    <div class="controls">
+        <div class="control-group">
+            <label>1. Upload Floor Plan:</label>
+            <input type="file" id="imgInput" accept="image/*" style="display: none;">
+            <button id="uploadBtn" class="secondary-btn">📂 Choose Floor Plan</button>
+        </div>
+
+        <div class="control-group">
+            <label for="mode">2. Select Scanner:</label>
+            <select id="mode" aria-label="Select Scanner Mode">
+                <option value="laptop">Laptop Internal Wi-Fi</option>
+                <option value="esp32">ESP32 External Scanner</option>
+            </select>
+            <span id="espStatus" class="status-badge status-weak" style="display: none;">ESP32: Offline</span>
+        </div>
+
+        <div class="control-group" style="flex-direction: row; gap: 10px; align-items: flex-end;">
+            <button id="generateBtn" class="primary-btn">Generate Heatmap</button>
+            <button id="resetBtn" class="danger-btn">Reset Data</button>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        
+        <div class="panel map-panel">
+            <h3>Signal Strength Heatmap</h3>
+            <div id="canvasWrapper" class="canvas-wrapper">
+                <img id="floorPlanImg" alt="Floor Plan" style="display: none;">
+                <canvas id="signalCanvas"></canvas>
+                <div id="uploadHint">Click "Choose Floor Plan" to start.</div>
+            </div>
+        </div>
+
+        <div class="panel side-panel">
+            
+            <div class="speed-container">
+                <div class="speed-card">
+                    <h4>Download Speed</h4>
+                    <div class="speed-val"><span id="downSpeed">0</span> <small>Mbps</small></div>
+                </div>
+                <div class="speed-card">
+                    <h4>Upload Speed</h4>
+                    <div class="speed-val"><span id="upSpeed">0</span> <small>Mbps</small></div>
+                </div>
+            </div>
+
+            <div class="sub-panel ai-panel">
+                <h3>AI Recommendation</h3>
+                <p id="aiOutput">Map at least 3 points and click "Generate Heatmap" to see advice.</p>
+            </div>
+
+            <div class="sub-panel log-panel">
+                <h3>Measurement Log</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Loc</th>
+                                <th>dBm</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="locationModal" class="modal">
+        <div class="modal-content">
+            <h3>📍 New Measurement</h3>
+            <p>Enter the name of this location (e.g., Kitchen):</p>
+            <input type="text" id="locNameInput" placeholder="Location Name" autocomplete="off">
+            <div class="modal-buttons">
+                <button id="cancelLocBtn" class="danger-btn" style="padding:8px 15px;">Cancel</button>
+                <button id="confirmLocBtn" class="primary-btn" style="padding:8px 15px;">Measure</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
