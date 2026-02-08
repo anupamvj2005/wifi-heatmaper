@@ -109,7 +109,7 @@ WIFI-HEATMAPER/
 
 ```bash
 git clone [https://github.com/yourusername/Wifi-Signal-Heatmapper.git](https://github.com/yourusername/Wifi-Signal-Heatmapper.git)
-cd Wifi-Signal-Heatmapper
+cd wifi-heatmapper
 ```
 
 ### 2. Set Up Virtual Environment
@@ -171,5 +171,6 @@ python app.py
 This project is open-source and available under the **MIT License**.
 
 © 2026 Wi-Fi Signal Heatmapper
+
 
 Built with ❤️ by **Anupam Jadhav**
