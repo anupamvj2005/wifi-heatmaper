@@ -1,0 +1,28 @@
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# IDE Settings
+.vscode/
+.idea/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# ESP32 Build Files
+*.bin
+*.elf
+*.hex
+scanners/esp32/**/build/
+
+# Logs
+*.log
+
+# Data
+data/
